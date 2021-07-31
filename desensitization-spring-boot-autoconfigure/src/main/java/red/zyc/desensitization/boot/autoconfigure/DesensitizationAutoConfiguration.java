@@ -35,7 +35,7 @@ import java.util.Optional;
  * @author zyc
  */
 @Configuration
-@ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
+@ConditionalOnWebApplication
 @EnableConfigurationProperties(DesensitizationProperties.class)
 public class DesensitizationAutoConfiguration {
 
@@ -66,7 +66,7 @@ public class DesensitizationAutoConfiguration {
      */
     private String pointcutExpression() {
         SpringApplication springApplication = SPRING_APPLICATION_HOLDER.get();
-        Assert.notNull(springApplication, () -> "无法获取SpringApplication！当前应用可能不是spring-boot工程。");
+        Assert.notNull(springApplication, "无法获取SpringApplication！当前应用可能不是spring-boot工程。");
         return Optional.ofNullable(desensitizationProperties.getPointcutExpression())
                 .orElse("execution(* "
                         + springApplication.getMainApplicationClass().getPackage().getName()

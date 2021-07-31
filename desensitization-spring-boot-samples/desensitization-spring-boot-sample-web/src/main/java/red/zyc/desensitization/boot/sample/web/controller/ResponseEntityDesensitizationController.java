@@ -89,7 +89,7 @@ public class ResponseEntityDesensitizationController {
     }
 
     @PostMapping("/objectReturnValue")
-    public ResponseEntity<@CascadeSensitive List<Person>> desensitizeObjectReturnValue(@RequestBody Person person) {
+    public ResponseEntity<List<@CascadeSensitive Person>> desensitizeObjectReturnValue(@RequestBody Person person) {
 
         List<Person> persons = new ArrayList<>();
         for (int i = 0; i < 10000; i++) {

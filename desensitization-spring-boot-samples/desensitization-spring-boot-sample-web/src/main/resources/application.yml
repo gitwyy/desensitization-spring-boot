@@ -1,2 +1,9 @@
 server:
   port: 9000
+
+logging:
+  level:
+    root: debug
+
+desensitization:
+  pointcutExpression: execution(* red.zyc.desensitization.boot.sample.web.controller.*.*(..))

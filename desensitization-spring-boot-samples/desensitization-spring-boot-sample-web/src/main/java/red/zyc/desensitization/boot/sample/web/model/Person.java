@@ -19,8 +19,6 @@ package red.zyc.desensitization.boot.sample.web.model;
 import red.zyc.desensitization.annotation.EmailSensitive;
 import red.zyc.desensitization.annotation.PhoneNumberSensitive;
 
-import java.util.StringJoiner;
-
 /**
  * @author zyc
  */
@@ -31,6 +29,8 @@ public class Person {
 
     @EmailSensitive
     private String email;
+
+    private Integer num;
 
     public Person() {
     }
@@ -56,11 +56,20 @@ public class Person {
         this.email = email;
     }
 
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
+
     @Override
     public String toString() {
-        return new StringJoiner(", ", Person.class.getSimpleName() + "[", "]")
-                .add("phoneNumber='" + phoneNumber + "'")
-                .add("email='" + email + "'")
-                .toString();
+        return "Person{" +
+                "phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", num=" + num +
+                '}';
     }
 }

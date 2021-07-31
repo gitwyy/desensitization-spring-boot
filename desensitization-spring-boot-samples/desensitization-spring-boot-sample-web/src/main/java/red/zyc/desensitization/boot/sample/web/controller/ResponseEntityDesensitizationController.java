@@ -17,12 +17,18 @@
 package red.zyc.desensitization.boot.sample.web.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import red.zyc.desensitization.annotation.CascadeSensitive;
 import red.zyc.desensitization.annotation.ChineseNameSensitive;
 import red.zyc.desensitization.annotation.EmailSensitive;
 import red.zyc.desensitization.boot.sample.web.model.Person;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -83,8 +89,17 @@ public class ResponseEntityDesensitizationController {
     }
 
     @PostMapping("/objectReturnValue")
-    public ResponseEntity<@CascadeSensitive Person> desensitizeObjectReturnValue(@RequestBody Person person) {
-        return ok(person);
+    public ResponseEntity<@CascadeSensitive List<Person>> desensitizeObjectReturnValue(@RequestBody Person person) {
+
+        List<Person> persons = new ArrayList<>();
+        for (int i = 0; i < 10000; i++) {
+            Person p = new Person();
+            p.setEmail(person.getEmail());
+            p.setPhoneNumber(person.getPhoneNumber());
+            p.setNum(i);
+            persons.add(p);
+        }
+        return ok(persons);
     }
 
 }

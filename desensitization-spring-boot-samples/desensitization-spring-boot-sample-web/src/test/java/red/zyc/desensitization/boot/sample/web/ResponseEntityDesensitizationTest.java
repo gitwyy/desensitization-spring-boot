@@ -141,7 +141,8 @@ class ResponseEntityDesensitizationTest {
      */
     @Test
     void desensitizeObjectReturnValue() {
-        Person body = restTemplate.postForObject("/responseEntityDesensitization/objectReturnValue", new Person("12345678910", "123456@qq.com"), Person.class);
+        List<Person> body = restTemplate.postForObject("/responseEntityDesensitization/objectReturnValue",
+                new Person("12345678910", "123456@qq.com"), List.class);
         assertNotNull(body);
         LOGGER.info(body.toString());
     }

@@ -59,7 +59,6 @@ public class SpringBootMainApplicationClassRunListener implements SpringApplicat
 
     @Override
     public void finished(ConfigurableApplicationContext configurableApplicationContext, Throwable throwable) {
-        DesensitizationAutoConfiguration.SPRING_APPLICATION_HOLDER.remove();
         configurableApplicationContext.getBeansOfType(TypeResolver.class).values().forEach(TypeResolvers::register);
     }
 
